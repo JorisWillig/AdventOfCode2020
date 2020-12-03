@@ -7,15 +7,11 @@ function navigate(right, down) {
   let treeCount = 0;
 
   for(let i = 0; i < input.length; i += down) {
-    if (meetsTree(input[i], xPos)) treeCount++;
+    if (input[i][xPos] === "#") treeCount++;
     xPos = (xPos + right) % mapWidth;
   }
 
   return treeCount;
-}
-
-function meetsTree(row, xPos) {
-  return row[xPos] === "#";
 }
 
 fileReader.readFile("./Day3.txt", "utf8", (err, data) => {
