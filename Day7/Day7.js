@@ -21,8 +21,20 @@ function day7a() {
   console.log("You can put your 'shiny gold' bag in " + ruleCount + " different bags");
 }
 
-function day7b() {
+function countBagsInRule(rule) {
+  let total = 0;
+  if (rule) {
+    Object.entries(rule).forEach(([name, count]) => {
+      total += (count + count*countBagsInRule(input[name]));
+    });
+  }
 
+  return total;
+}
+
+function day7b() {
+  let total = countBagsInRule(input["shiny gold"]);
+  console.log("Your 'shiny gold' bag needs to contain " + total + " other bags.");
 }
 
 fileReader.readFile("./Day7.txt", "utf8", (err, data) => {
